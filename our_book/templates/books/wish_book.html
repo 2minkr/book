@@ -1,0 +1,28 @@
+{% extends "base.html"  %}
+{% load humanize %}
+
+{% block title %}OUR BOOK - 도서구매신청{% endblock %}
+
+{% block menu %}도서 구매 신청{% endblock %}
+
+{% block seach_input %}
+    <input type="text" class="form-control" placeholder="Search" name="keyword_wish" required>
+{% endblock %}
+
+{% block content %}
+    <h2>검색 결과</h2>
+    <h4>희망 도서를 구매 요청 할 수 있습니다 <a href="{% url 'books:wish_month' current_year current_month%}">도서구매 신청 현황</a></h4>
+    <form action="{% url 'books:search_result' %}" method="get">
+        <div class="form-group">
+            <input type="text" class="body-search-input form-control input-lg" placeholder="Search" name="keyword_wish">
+        </div>
+    </form>
+    {% for book in books %}
+        {% include 'include/book.html' with type='wish'%}
+    {% endfor %}
+{% endblock %}
+
+
+
+
+
